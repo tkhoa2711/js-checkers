@@ -14,13 +14,37 @@ class Checkers {
     // ^ .
     // | . player 1 . . .
     // 0 -> . . . . . . X
-    this.squares = Array(DIMENSION_Y).fill(Array(DIMENSION_X))
+    this.dimensionX = DIMENSION_X;
+    this.dimensionY = DIMENSION_Y;
+    this.squares = Array(this.dimensionY).fill(Array(this.dimensionX))
     this.pieces = []
     this.startNewGame();
   }
 
   startNewGame() {
-    // TODO: implementation
+    for (let y = 0; y < this.dimensionY; y++) {
+      for (let x = 0; x < this.dimensionX; x++) {
+        // initialise a square
+        this.squares[x][y] = new Square({ x, y })
+
+        // initialise a piece in this square if applicable
+        let newPiece;
+        if ((y === 0 || y === 2) && (x % 2 === 0)) {
+          newPiece = new Piece({ x, y }, this.player1)
+        } else if ((y === 1) && (x % 2 === 1)) {
+          newPiece = new Piece({ x, y }, this.player1)
+        } else if ((y === this.dimensionY - 1 || y == this.dimensionY - 3) && (x % 2 === 1)) {
+          newPiece = new Piece({ x, y }, this.player2)
+        } else if ((y === this.dimensionY - 2) && (x % 2 === 0)) {
+          newPiece = new Piece({ x, y }, this.player2)
+        }
+
+        if (newPiece) {
+          this.squares[x][y] = newPiece;
+          this.pieces.push(newPiece)
+        }
+      }
+    }
   }
 }
 

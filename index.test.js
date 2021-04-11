@@ -6,18 +6,35 @@ const {
   Square
 } = require('./index')
 
+// flatten 2-level nested arrays only
+const flattenArrays = array => [].concat.apply([], array)
+
 describe('initialisation', () => {
   describe('#Checkers', () => {
     const player1 = new Player('Bugs Bunny')
     const player2 = new Player('Daffy Duck')
 
-    const game = new Checkers({ dimensionX: 8, dimensionY: 8 }, player1, player2)
+    const game = new Checkers(player1, player2)
 
     test('an empty game can be created', () => {
       expect(game).toBeDefined()
     })
 
-    test.todo('a game has expected amount of pieces')
+    test('a game has expected amount of squares', () => {
+      // flatten nested arrays
+      const allSquares = flattenArrays(game.squares)
+
+      expect(allSquares).toHaveLength(64)
+    })
+
+    describe('the board is set up correctly', () => {
+      test('each player has 12 pieces', () => {
+        const allPieces = flattenArrays(game.pieces)
+
+        expect(allPieces.filter(i => i.player === player1)).toHaveLength(12)
+        expect(allPieces.filter(i => i.player === player2)).toHaveLength(12)
+      })
+    })
   })
 
   describe('#Square', () => {
