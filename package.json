@@ -1,0 +1,8 @@
+{
+  "name": "js-checkers",
+  "version": "1.0.0",
+  "description": "Checkers game in JS",
+  "main": "index.js",
+  "author": "Khoa Le <ltkhoa2711@gmail.com>",
+  "private": true
+}
