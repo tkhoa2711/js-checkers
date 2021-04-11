@@ -4,5 +4,11 @@
   "description": "Checkers game in JS",
   "main": "index.js",
   "author": "Khoa Le <ltkhoa2711@gmail.com>",
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "jest": "^26.6.3"
+  },
+  "scripts": {
+    "test": "jest"
+  }
 }
