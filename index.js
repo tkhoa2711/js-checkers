@@ -1,23 +1,47 @@
+const DIMENSION_X = 8
+const DIMENSION_Y = 8
+
 class Checkers {
-  constructor({ dimensionX, dimensionY }, player1, player2) {
-    this.board = new Board({ dimensionX, dimensionY })
+  constructor(player1, player2) {
     this.player1 = player1
     this.player2 = player2
+    // 2-dimensional array to hold X x Y squares
+    //
+    // Y . player 2 . . .
+    // .
+    // .
+    // .
+    // ^ .
+    // | . player 1 . . .
+    // 0 -> . . . . . . X
+    this.squares = Array(DIMENSION_Y).fill(Array(DIMENSION_X))
+    this.pieces = []
+    this.startNewGame();
+  }
+
+  startNewGame() {
+    // TODO: implementation
   }
 }
 
-class Board {
-  constructor({ dimensionX, dimensionY }) {
-    // 2-dimensional array to hold X x Y pieces
-    this.pieces = Array(dimensionX).fill(Array(dimensionY))
-    // TODO: initialise the pieces
+class Square {
+  constructor({ x, y }) {
+    this.piece = null
+    this.coordinates = { x, y }
+  }
+
+  isEmpty() {
+    return !this.piece
   }
 }
 
 class Piece {
-  constructor(player) {
+  constructor({ x, y }, player) {
+    this.coordinates = { x, y }
     this.player = player
     this.isKing = false
+    // TODO: extract this ID generation logic into its own function
+    this.id = Math.random().toString(36).substring(7);
   }
 }
 
@@ -30,8 +54,8 @@ class Player {
 }
 
 module.exports = {
-  Board,
   Checkers,
   Piece,
-  Player
+  Player,
+  Square
 }

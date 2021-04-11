@@ -1,33 +1,35 @@
 // const jest = require('jest')
 const {
-  Board,
   Checkers,
   Piece,
-  Player
+  Player,
+  Square
 } = require('./index')
 
 describe('initialisation', () => {
-  test('#Checkers', () => {
+  describe('#Checkers', () => {
     const player1 = new Player('Bugs Bunny')
     const player2 = new Player('Daffy Duck')
 
     const game = new Checkers({ dimensionX: 8, dimensionY: 8 }, player1, player2)
 
-    expect(game).toBeDefined()
+    test('an empty game can be created', () => {
+      expect(game).toBeDefined()
+    })
+
+    test.todo('a game has expected amount of pieces')
   })
 
-  test('#Board', () => {
-    const board = new Board({ dimensionX: 3, dimensionY: 4 })
+  describe('#Square', () => {
+    test('constructor', () => {
+      const square = new Square({ x: 2, y: 4 })
+    })
 
-    expect(board).toBeDefined()
-  })
+    test('a square is empty by default', () => {
+      const square = new Square({ x: 2, y: 4 })
 
-
-  test('a board has expected amount of pieces', () => {
-    const board = new Board({ dimensionX: 3, dimensionY: 4 })
-    const allPieces = [].concat.apply([], board.pieces)
-
-    expect(allPieces).toHaveLength(12)
+      expect(square.isEmpty()).toBeTruthy()
+    })
   })
 
   test('#Piece', () => {
