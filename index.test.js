@@ -49,18 +49,19 @@ describe('initialisation', () => {
     })
   })
 
-  test('#Piece', () => {
+  describe('#Piece', () => {
     const player = jest.fn()
-    const piece = new Piece(player)
+    const piece = new Piece({ x: 3, y: 7 }, player)
 
-    expect(piece).toBeDefined()
-  })
+    test('constructor', () => {
+      expect(piece).toBeDefined()
+      expect(piece.coordinates).toEqual({ x: 3, y: 7 })
+      expect(piece.player).toBe(player)
+    })
 
-  test('a piece is not king by default', () => {
-    const player = jest.fn()
-    const piece = new Piece(player)
-
-    expect(piece.isKing).toBe(false)
+    test('a piece is not king by default', () => {
+      expect(piece.isKing).toBe(false)
+    })
   })
 
   test('#Player', () => {
