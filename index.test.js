@@ -76,3 +76,9 @@ describe('initialisation', () => {
     expect(player.id).toEqual(expect.any(String))
   })
 })
+
+describe('moving a piece', () => {
+  test.todo('a valid move')
+
+  test.todo('an invalid move')
+})

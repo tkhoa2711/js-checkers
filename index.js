@@ -46,6 +46,41 @@ class Checkers {
       }
     }
   }
+
+  move(piece, newSquare, currentPlayer) {
+    const coordinates = piece.coordinates
+    const newCoordinates = newSquare.coordinates
+    const isNotAValidMove = !(
+      this.isMovingForward(coordinates, newCoordinates, currentPlayer)
+      && this.isMovingDiagonally(coordinates, newCoordinates)
+      && this.isMovingOneSpace(coordinates, newCoordinates)
+      && newSquare.isEmpty()
+    )
+
+    if (isNotAValidMove) {
+      throw Error(`The piece ${piece} cannot be moved to this square ${newSquare}`)
+    }
+
+    piece.coordinates = newCoordinates
+    newSquare.piece = piece
+  }
+
+  isMovingForward(coordinates, newCoordinates, currentPlayer) {
+    // TODO
+  }
+
+  isMovingDiagonally(coordinates, newCoordinates) {
+    // TODO
+  }
+
+  isMovingOneSpace(coordinates, newCoordinates) {
+    // TODO
+  }
+
+  isSquareEmpty(coordinates) {
+    const { x, y } = coordinates
+    return this.squares[x][y].isEmpty()
+  }
 }
 
 class Square {
