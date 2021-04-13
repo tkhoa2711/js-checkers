@@ -25,6 +25,9 @@ describe('initialisation', () => {
       const allSquares = flattenArrays(game.squares)
 
       expect(allSquares).toHaveLength(64)
+      for (const square of allSquares) {
+        expect(square).toBeInstanceOf(Square)
+      }
     })
 
     describe('the board is set up correctly', () => {
@@ -33,6 +36,14 @@ describe('initialisation', () => {
 
         expect(allPieces.filter(i => i.player === player1)).toHaveLength(12)
         expect(allPieces.filter(i => i.player === player2)).toHaveLength(12)
+      })
+
+      test('12 squares have a piece associated with each of them', () => {
+        const allSquares = flattenArrays(game.squares)
+
+        allSquares
+          .filter(square => !square.isEmpty())
+          .forEach(square => expect(square.piece).toBeInstanceOf(Piece))
       })
     })
   })

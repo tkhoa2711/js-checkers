@@ -40,7 +40,7 @@ class Checkers {
         }
 
         if (newPiece) {
-          this.squares[x][y] = newPiece;
+          this.squares[x][y].piece = newPiece;
           this.pieces.push(newPiece)
         }
       }
